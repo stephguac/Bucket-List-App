@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+ 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-route.min.js"></script>
+ 	<!-- Factories -->
+	<script src="./factories/userFactory.js"></script>
+	<script src="./factories/itemFactory.js"></script>
+ 	<!-- Controllers -->
+	<script src="./controllers/usersController.js"></script>
+	<script src="./controllers/dashboardsController.js"></script>
+	<script src="./controllers/showUsersController.js"></script>
+	<!-- Bootstrap (CSS) -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<!-- Style -->
+	<link rel="stylesheet" href="./static/stylesheets/style.css">
+	<!-- Angular Routes -->
+	<script>
+		myAppModule.config(function($routeProvider) {
+			$routeProvider
+			.when('/', {
+				templateUrl: '../static/partials/newUser.html'
+			})
+			.when('/dashboard', {
+				templateUrl: '../static/partials/dashboard.html'
+			})
+			.when('/showUser/:name', {
+				templateUrl: '../static/partials/showUser.html'
+			})
+			.otherwise( {
+				redirectTo: '/'
+			});
+		});
+	</script>
+</head>
+<body>
+	<div ng-view="">
+		
+	</div>
+</body>
+</html>

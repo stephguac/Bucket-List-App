@@ -1,0 +1,15 @@
+<div ng-controller="usersController">
+	<div class="jumbotron" id="newUserJumbotron">	
+		<div class="container">	
+			<div class="row">
+				<div class="col-md-12 text-center">
+					<h1 id="whatsOn">What's On Your Bucket List?</h1>
+					<form>
+						<input id="yourName" type="text" ng-model="newUser.name" placeholder="Your Name">
+						<button id="enter" class="btn btn-primary" ng-click="addUser(newUser)">Enter</button>
+					</form>				
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

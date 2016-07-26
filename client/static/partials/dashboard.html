@@ -1,0 +1,80 @@
+<div ng-controller="dashboardsController">
+	<nav class="navbar navbar-default">
+	  <div class="container">
+	    <!-- Brand and toggle get grouped for better mobile display -->
+	    <div class="navbar-header">
+	      <a class="navbar-brand" href="#">Bucket List</a>
+	    </div>
+		<ul class="nav navbar-nav navbar-right">
+			<li><a href="#/dashboard">Home</a></li>
+			<li><button id="logOut" ng-click="logOut()">Log Out</button></li>
+		</ul>
+	  </div><!-- /.container-fluid -->
+	</nav>
+
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12 text-center">
+				<h1>Welcome, {{currentUser.name}}!</h1><br>
+				<p>{{titleError}}</p>
+				<p>{{descriptinError}}</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-3">
+				<h4>Add a new Bucket List item:</h4>
+				<form>
+					<input class="newItem" type="text" placeholder="Title" ng-model="newItem.title">
+					<input class="newItem" type="text" placeholder="Description" ng-model="newItem.description">
+					<fieldset id="tag" class="form-group">
+						<label for="friend">Tag a Friend:</label>
+						<select id="friend" ng-model="newItem.users">
+							<option ng-repeat="user in users" ng-value="user._id">{{user.name}}</option>
+						</select>
+					</fieldset>
+					<button id="addItem" class="btn btn-primary" ng-click="addItem(newItem)">Add to List</button>
+				</form>				
+			</div>
+			<div class="col-md-6">
+				<h3>Before I die I want to...</h3>
+				<form ng-repeat="item in myItems">
+					<input 
+						type="checkbox" 
+						name="selectedItems[]"
+						value="{{item}}" 
+						ng-click="addCheck(item._id)"
+						ng-checked="item.isDone">
+					{{item.created_by_name}} | {{item.title}} | {{item.createdAt}}<br>
+				</form>				
+			</div>
+			<div class="col-md-3">
+				<h3>Friends' Bucket Lists</h3>
+				<ul ng-repeat="user in users">
+					<li><a href="#/showUser/{{user.name}}">{{user.name}}</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="row">
+			<h3>Popular Bucket List Items...</h3>
+			<div class="col-md-3 pop-div">
+				<img class="img-rounded popular" src="/static/images/london.jpg" alt="london">
+				<p>Visit London</p>
+			</div>
+			<div class="col-md-3 pop-div">
+				<img class="img-rounded popular" src="/static/images/family.png" alt="family">
+				<p>Start a Family</p>
+			</div>
+			<div class="col-md-3 pop-div">
+				<img class="img-rounded popular" src="/static/images/lights.jpg" alt="lights">
+				<p>See the Northern Lights</p>
+			</div>
+			<div class="col-md-3 pop-div">
+				<img class="img-rounded popular" src="/static/images/fuji.jpg" alt="london">
+				<p>Climb Mt. Fuji</p>
+			</div>
+		</div>
+	</div>
+	
+
+</div>
