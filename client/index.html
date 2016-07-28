@@ -2,7 +2,6 @@
 <html lang="en" ng-app="myApp">
 <head>
 	<meta charset="UTF-8">
-	<title></title>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
  	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-route.min.js"></script>
  	<!-- Factories -->
@@ -21,19 +20,28 @@
 		myAppModule.config(function($routeProvider) {
 			$routeProvider
 			.when('/', {
+				title: 'Bucket List',
 				templateUrl: '../static/partials/newUser.html'
 			})
 			.when('/dashboard', {
+				title: 'Bucket List - dashboard',
 				templateUrl: '../static/partials/dashboard.html'
 			})
 			.when('/showUser/:name', {
+				title: 'Bucket List',
 				templateUrl: '../static/partials/showUser.html'
 			})
 			.otherwise( {
 				redirectTo: '/'
 			});
 		});
+		myAppModule.run(['$rootScope', function($rootScope) {
+	        $rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
+	            $rootScope.title = current.$$route.title;
+        });
+    }]);
 	</script>
+	<title ng-bind="title"></title>
 </head>
 <body>
 	<div ng-view="">
